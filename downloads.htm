@@ -15,15 +15,24 @@
   margin: 0;
   padding: 0;
   box-sizing: border-box;
+  text-decoration: none;
+  font-family: Tahoma;
 }
 .parent-container {
   position: relative;
   /* Add other styles as needed */
 }
 
+#navbar a {
+  display: inline; /* Ensure links are inline in IE5 */
+}
+
 #navbar {
   position: absolute;
-  background-color: black;
+  background-color: #B64C10;
+  display: block;
+width: 100%;
+
   color: white;
   height: 21px;
   left: 0;
@@ -31,39 +40,102 @@
   text-decoration: none;
   top: -7px;
   line-height: 21px; /* Match the height of the bar */
+position: relative; /* Needed for absolute positioning of the wrapper */
 }
+
+#user-agent-wrapper {
+  position: absolute; /* Take it out of the normal flow */
+  right: 0; /* Position it at the right edge */
+  top: 0; /* Align it to the top (optional) */
+  /* You can add padding or margin here if needed */
+  white-space: nowrap; /* Prevent wrapping if the user agent is long */
+}
+
+#user-agent-display {
+  /* Optional: Add styles for the user agent display itself */
+}
+
+#ua {
+  /* Optional: Add styles for the user agent display itself */
+  text-align: right;
 }
 </style>
 
 <p>
-<img style="position: absolute; left: -1; top: -1;" border="0" src="img/wordmark.png" width="250" height="61" hspace="0"></p>
+<img style="position: absolute; left: -1; top: -1;" border="0" src="img/wordmark.png" width="250" height="61" hspace="0"><font face="Tahoma" size="2">
+<img border="0" src="img/banner2.gif" width="96" style="position:absolute;right:0;top: -2;float:right!important;margin-left:auto; width:96px; height:61px" height="61" align="right"></font></p><font face="Tahoma" size="2">
+<img border="0" src="img/banner2.gif" width="96" style="position:absolute;right:0;top: -2;float:right!important;margin-left:auto; width:96px; height:61px" height="61" align="right"></font></p></p>
 <p>
 &nbsp;</p>
 <p>
 <font style="font-size: 0.3pt">&nbsp;</font></p>
 <div class="parent-container">
-<div class="box" id="navbar" style="position: absolute; left: 0px; top: 40px">
+<div class="box" id="navbar" style="position: absolute; left: 0px; top: 39px">
 <div class="container" style="padding:-2px; text-decoration:none!important;">
 <p style="padding-bottom:0.2;"><a href="index.htm"><font color="#FFFFFF">
-<span style="text-decoration: none">&nbsp;Home</span></font></a>&nbsp; <a href="blog.htm">
+<span style="text-decoration: none"><font size="2">&nbsp;Home</font></span></font></a><font size="2">&nbsp; <a href="blog.htm">
 <font color="#FFFFFF"><span style="text-decoration: none">Blog</span></font></a>&nbsp;
 <a href="socials.htm"><font color="#FFFFFF"><span style="text-decoration: none">Socials</span></font></a>&nbsp; <a href="projects.htm"><font color="#FFFFFF">
 <span style="text-decoration: none">Projects</span></font></a>&nbsp;
 <a href="about.htm"><font color="#FFFFFF"><span style="text-decoration: none">About</span></font></a>&nbsp; <a href="art.htm"><font color="#FFFFFF">
 <span style="text-decoration: none">Art</span></font></a>&nbsp;
 <font color="#FFFF00">
-<span style="text-decoration: none">Downloads</span></font> </p>
+<span style="text-decoration: none">Downloads</span></font> </font> </p>
+  <span id="user-agent-wrapper">
+    <font size=1"><span id="ua"></span></font>
+  </span>
+  <script>
+document.addEventListener('DOMContentLoaded', function() {
+  // Get the user agent string
+  var userAgent = navigator.userAgent;
+
+// Get the existing element in the navbar (replace with the actual element ID)
+var userAgentElement = document.getElementById('ua'); // Replace with your element ID
+
+// Set the text content of the element to the user agent string
+userAgentElement.textContent = userAgent;
+</script>
+  <span id="user-agent-wrapper">
+    <font size=1"><span id="ua"></span></font>
+  </span>
+<script>
+  function displayUserAgent() {
+    // Get the user agent string
+    var userAgent = navigator.userAgent;
+
+    // Get the existing element in the navbar (replace with the actual element ID)
+    var userAgentElement = document.getElementById('ua');
+
+    // Set the text content of the element to the user agent string
+    if (userAgentElement.textContent !== undefined) {
+      userAgentElement.textContent = userAgent; // Use textContent if supported
+    } else {
+      userAgentElement.innerText = userAgent; // Fallback to innerText
+    }
+  }
+
+  // Check for addEventListener support
+  if (document.addEventListener) {
+    document.addEventListener('DOMContentLoaded', displayUserAgent);
+  } else if (document.attachEvent) {
+    document.attachEvent('onreadystatechange', function() {
+      if (document.readyState === 'complete') {
+        displayUserAgent();
+      }
+    });
+  }
+</script>
 </div>
 </div>
 </div>
 <div class="container is-hidden-widescreen">
       <div class="box">
-          <div class="container" id="mb-sbicon">
-              <img src="/img/mario_and_luigi_3_icon.png" alt="Mario &amp; Luigi: Bowser's Inside Story Game Icon" width="64px" height="64px" id="sicon">
-          </div>
           <h3 style="text-align: center;">&nbsp;</h3>
-			<h3 style="text-align: center;"><span style="font-weight: 400">
-			<font size="5">Downloads</font></span></h3>
+			<h3 style="text-align: center;">&nbsp;</h3>
+			<h3 style="text-align: center;">&nbsp;</h3>
+			<h3 style="text-align: center;">&nbsp;</h3>
+			<h3 style="text-align: center;">
+			<font size="5">Downloads</font></h3>
 			<p style="text-align: center;">Just some random archives :)</p>
 			<h3 style="text-align: center;">&nbsp;</h3>
 			<p style="text-align: center;">I DONT CLAIM ANY OF THESE AS MY OWN</p>
@@ -76,7 +148,7 @@
           <p style="text-align: center;">The 2009 USA Kiosk Demo of Mario &amp; Luigi: Bowser's Inside Story.</p>
 			<p style="text-align: center;">&nbsp;</p>
           <p align="center">
-          <a href="https://github.com/stuffyxp/stuffyxp.github.io/releases/download/Video/marioandluigirpg3_kiosk-us.zip"><button id="sb-button"><i class="fa-solid fa-arrow-down">&nbsp; </i> Download&nbsp;&nbsp; </button></a>
+          <a href="https://github.com/stuffyxp/stuffyxp.github.io/releases/download/Video/marioandluigirpg3_kiosk-us.zip" onclick="window.location.href = this.href;"><button id="sb-button"><i class="fa-solid fa-arrow-down">&nbsp; </i> Download&nbsp;&nbsp; </button></a>
       </div>
       <p>&nbsp;</p>
       <div class="box">
@@ -88,7 +160,7 @@
         <p style="text-align: center;">Images</p>
 		<p style="text-align: center;">&nbsp;</p>
         <p style="text-align: center;">Extracted difficulty icons from the CatsDF GD Texture Pack, splitted using GD Colon's Spritesheet Splitter</p>
-        &nbsp;<p align="center"><a href="downloads/catsdf-icons.7z"><button id="sb-button"><i class="fa-solid fa-arrow-down">&nbsp; </i> Download&nbsp;&nbsp; </button></a>
+        &nbsp;<p align="center"><a href="downloads/catsdf-icons.7z" onclick="window.location.href = this.href;"><button id="sb-button"><i class="fa-solid fa-arrow-down">&nbsp; </i> Download&nbsp;&nbsp; </button></a>
     </div>
 
   <p>&nbsp;</p>
@@ -102,7 +174,7 @@
     </p>
 	<p style="text-align: center;">&nbsp;</p>
     <p style="text-align: center;">Windows Registration Entries for activating VMware 1.0-294 for Windows NT and Windows 2000.</p>
-    &nbsp;<p align="center"><a href="downloads/vmware1.0.reg"><button id="sb-button"><i class="fa-solid fa-arrow-down">&nbsp; </i> Download&nbsp;&nbsp; </button></a>
+    &nbsp;<p align="center"><a href="downloads/vmware1.0.reg" onclick="window.location.href = this.href;"><button id="sb-button"><i class="fa-solid fa-arrow-down">&nbsp; </i> Download&nbsp;&nbsp; </button></a>
 <p align="center">&nbsp;</p>
 	<p align="center">&copy; 2025 Horibyte.</p>
 <p align="center">The source code of this website is licensed under MIT.</p>

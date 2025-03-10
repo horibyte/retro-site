@@ -14,15 +14,24 @@
   margin: 0;
   padding: 0;
   box-sizing: border-box;
+  text-decoration: none;
+  font-family: Tahoma;
 }
 .parent-container {
   position: relative;
   /* Add other styles as needed */
 }
 
+#navbar a {
+  display: inline; /* Ensure links are inline in IE5 */
+}
+
 #navbar {
   position: absolute;
-  background-color: black;
+  background-color: #B64C10;
+  display: block;
+width: 100%;
+
   color: white;
   height: 21px;
   left: 0;
@@ -30,15 +39,35 @@
   text-decoration: none;
   top: -7px;
   line-height: 21px; /* Match the height of the bar */
+position: relative; /* Needed for absolute positioning of the wrapper */
+}
+
+#user-agent-wrapper {
+  position: absolute; /* Take it out of the normal flow */
+  right: 0; /* Position it at the right edge */
+  top: 0; /* Align it to the top (optional) */
+  /* You can add padding or margin here if needed */
+  white-space: nowrap; /* Prevent wrapping if the user agent is long */
+}
+
+#user-agent-display {
+  /* Optional: Add styles for the user agent display itself */
+}
+
+#ua {
+  /* Optional: Add styles for the user agent display itself */
+  text-align: right;
 }
 ul {
- list-style-type: disc;
- margin-left: 30px;
+	margin-left:30px
 }
 </style>
 
+
 <p>
-<img style="position: absolute; left: -1; top: -1;" border="0" src="img/wordmark.png" width="250" height="61" hspace="0"></p>
+<img style="position: absolute; left: -1; top: -1;" border="0" src="img/wordmark.png" width="250" height="61" hspace="0"><font face="Tahoma" size="2">
+<img border="0" src="img/banner2.gif" width="96" style="position:absolute;right:0;top: -2;float:right!important;margin-left:auto; width:96px; height:61px" height="61" align="right"></font></p><font face="Tahoma" size="2">
+<img border="0" src="img/banner2.gif" width="96" style="position:absolute;right:0;top: -2;float:right!important;margin-left:auto; width:96px; height:61px" height="61" align="right"></font></p></p>
 <p>
 &nbsp;</p>
 <p>
@@ -53,7 +82,7 @@ ul {
 <font style="font-size: 0.3pt">&nbsp;</font></p>
 <div class="box" id="navbar" style="position: absolute; left: 0px; top: 59px">
 <div class="container" style="padding:-2px; text-decoration:none!important;">
-<p style="padding-bottom:0.2;">&nbsp;<a href="index.htm"><font color="#FFFFFF"><span style="text-decoration: none">Home</span></font></a>&nbsp; <a href="blog.htm">
+<p style="padding-bottom:0.2;"><font size="2">&nbsp;<a href="index.htm"><font color="#FFFFFF"><span style="text-decoration: none">Home</span></font></a>&nbsp; <a href="blog.htm">
 <font color="#FFFFFF"><span style="text-decoration: none">Blog</span></font></a>&nbsp;
 <font color="#FFFF00">Socials</font>&nbsp; <a href="projects.htm"><font color="#FFFFFF">
 <span style="text-decoration: none">Projects</span></font></a>&nbsp;
@@ -61,10 +90,54 @@ ul {
 <span style="text-decoration: none">Art</span></font></a>&nbsp;
 <a href="downloads.htm">
 <font color="#FFFFFF">
-<span style="text-decoration: none">Downloads</span></font></a> </p>
+<span style="text-decoration: none">Downloads</span></font></a> </font> </p>
+  <span id="user-agent-wrapper">
+    <font size=1"><span id="ua"></span></font>
+  </span>
+  <script>
+document.addEventListener('DOMContentLoaded', function() {
+  // Get the user agent string
+  var userAgent = navigator.userAgent;
+
+// Get the existing element in the navbar (replace with the actual element ID)
+var userAgentElement = document.getElementById('ua'); // Replace with your element ID
+
+// Set the text content of the element to the user agent string
+userAgentElement.textContent = userAgent;
+</script>
+  <span id="user-agent-wrapper">
+    <font size=1"><span id="ua"></span></font>
+  </span>
+<script>
+  function displayUserAgent() {
+    // Get the user agent string
+    var userAgent = navigator.userAgent;
+
+    // Get the existing element in the navbar (replace with the actual element ID)
+    var userAgentElement = document.getElementById('ua');
+
+    // Set the text content of the element to the user agent string
+    if (userAgentElement.textContent !== undefined) {
+      userAgentElement.textContent = userAgent; // Use textContent if supported
+    } else {
+      userAgentElement.innerText = userAgent; // Fallback to innerText
+    }
+  }
+
+  // Check for addEventListener support
+  if (document.addEventListener) {
+    document.addEventListener('DOMContentLoaded', displayUserAgent);
+  } else if (document.attachEvent) {
+    document.attachEvent('onreadystatechange', function() {
+      if (document.readyState === 'complete') {
+        displayUserAgent();
+      }
+    });
+  }
+</script>
 </div>
 </div>
-<p align="center"><font size="5">Socials</font></p>
+<p align="center"><b><font size="5">Socials</font></b></p>
 <p align="center">Where you can find me on the internet!</p>
 <p align="center"><font size="2">(list cuz im not bothering to make boxes no no 
 no)</font></p>
@@ -74,37 +147,37 @@ no)</font></p>
 <ul>
 	<li>
 	<p align="left"><b>Discord Server - StuffyXP Hangout</b>: The community server 
-	for the StuffyXP channel!&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <a href="https://discord.gg/5n8sDTR37v"><button>
+	for the StuffyXP channel!&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <a href="https://discord.gg/5n8sDTR37v" onclick="window.location.href = this.href;"><button>
 	&nbsp;Join server&nbsp; </button><font size="2"></font></font></a></li>
 	<li>
 	<p align="left"><b>Mastodon - @horibyte@wetdry.world</b>: My secondary 
-	social media plaform, it's the Fediverse!&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <a href="https://wetdry.world/@horibyte"><button>
+	social media plaform, it's the Fediverse!&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <a href="https://wetdry.world/@horibyte" onclick="window.location.href = this.href;"><button>
 	&nbsp;Visit profile&nbsp; </button></a></p></li>
 	<li>
 	<p align="left"><b>Bluesky - @horibyte.is-a.dev:</b> Twitter but better, 
-	follow me there if you use it :)&nbsp;&nbsp;&nbsp;&nbsp; <a href="https://bsky.app/profile/horibyte.is-a.dev"><button>
+	follow me there if you use it :)&nbsp;&nbsp;&nbsp;&nbsp; <a href="https://bsky.app/profile/horibyte.is-a.dev" onclick="window.location.href = this.href;"><button>
 	&nbsp;Visit profile&nbsp; </button></a></p></li>
 	<li>
 	<p align="left"><b>Email - thehoribyte@gmail.com: </b>Didn't get to use 
-	horibyte@gmail.com ;-;&nbsp;&nbsp;&nbsp;&nbsp; <a href="mailto:thehoribyte@gmail.com"><button>
+	horibyte@gmail.com ;-;&nbsp;&nbsp;&nbsp;&nbsp; <a href="mailto:thehoribyte@gmail.com" onclick="window.location.href = this.href;"><button>
 	&nbsp;Visit profile&nbsp; </button></a></p></li>
 	<li>
 	<p align="left"><b>Reddit - r/StuffyXP, r/Horibyte &amp; u/StuffyXP</b>: idk why 
 	does this exist lmfaooo&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <button>
-	&nbsp;<a href="https://reddit.com/r/StuffyXP"><span style="text-decoration: none"><font color="#000000">Visit subreddit</font></span></a>&nbsp; </button>
+	&nbsp;<a href="https://reddit.com/r/StuffyXP" onclick="window.location.href = this.href;"><span style="text-decoration: none"><font color="#000000">Visit subreddit</font></span></a>&nbsp; </button>
 	<font size="2">&nbsp;</font><button>
-	&nbsp;<a href="https://reddit.com/r/Horibyte"><span style="text-decoration: none"><font color="#000000">Visit subreddit 
+	&nbsp;<a href="https://reddit.com/r/Horibyte" onclick="window.location.href = this.href;"><span style="text-decoration: none"><font color="#000000">Visit subreddit 
 	(Horibyte)</font></span></a>&nbsp; </button><font size="2">&nbsp;</font><button>
-	&nbsp;<a href="https://reddit.com/u/StuffyXP"><span style="text-decoration: none"><font color="#000000">Visit profile</font></span></a>&nbsp; </button></p></li>
+	&nbsp;<a href="https://reddit.com/u/StuffyXP" onclick="window.location.href = this.href;"><span style="text-decoration: none"><font color="#000000">Visit profile</font></span></a>&nbsp; </button></p></li>
 	<li>
 	<p align="left"><b>Geometry Dash - Horibyte&nbsp;&nbsp;&nbsp;&nbsp; </b><button>
-	&nbsp;<a href="https://gdbrowser.com/u/Horibyte"><span style="text-decoration: none"><font color="#000000">Visit profile</font></span></a>&nbsp; </button></p></li>
+	&nbsp;<a href="https://gdbrowser.com/u/Horibyte" onclick="window.location.href = this.href;"><span style="text-decoration: none"><font color="#000000">Visit profile</font></span></a>&nbsp; </button></p></li>
 	<li>
 	<p align="left"><b>Internet Archive - @stuffyxp&nbsp;&nbsp;&nbsp;&nbsp; </b><button>
-	&nbsp;<a href="https://archive.org/details/@stuffyxp"><span style="text-decoration: none"><font color="#000000">Visit profile</font></span></a>&nbsp; </button></p></li>
+	&nbsp;<a href="https://archive.org/details/@stuffyxp" onclick="window.location.href = this.href;"><span style="text-decoration: none"><font color="#000000">Visit profile</font></span></a>&nbsp; </button></p></li>
 	<li>
 	<p align="left"><b>GitHub - horibyte&nbsp;&nbsp;&nbsp;&nbsp; </b><button>
-	&nbsp;<a href="https://github.com/horibyte"><font color="#000000"><span style="text-decoration: none">Visit profile</span></font></a>&nbsp; </button></p></li>
+	&nbsp;<a href="https://github.com/horibyte" onclick="window.location.href = this.href;"><font color="#000000"><span style="text-decoration: none">Visit profile</span></font></a>&nbsp; </button></p></li>
 </ul>
 <p align="left">&nbsp;</p>
 <p align="center">&copy; 2025 Horibyte.</p>

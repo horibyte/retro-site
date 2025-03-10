@@ -15,21 +15,24 @@
   margin: 0;
   padding: 0;
   box-sizing: border-box;
-}
-
-hr {
-width: 60%;
-display: block; 
-margin: 0 auto;
+  text-decoration: none;
+  font-family: Tahoma;
 }
 .parent-container {
   position: relative;
   /* Add other styles as needed */
 }
 
+#navbar a {
+  display: inline; /* Ensure links are inline in IE5 */
+}
+
 #navbar {
   position: absolute;
-  background-color: black;
+  background-color: #B64C10;
+  display: block;
+width: 100%;
+;
   color: white;
   height: 21px;
   left: 0;
@@ -37,26 +40,40 @@ margin: 0 auto;
   text-decoration: none;
   top: -7px;
   line-height: 21px; /* Match the height of the bar */
+position: relative; /* Needed for absolute positioning of the wrapper */
 }
+
+#user-agent-wrapper {
+  position: absolute; /* Take it out of the normal flow */
+  right: 0; /* Position it at the right edge */
+  top: 0; /* Align it to the top (optional) */
+  /* You can add padding or margin here if needed */
+  white-space: nowrap; /* Prevent wrapping if the user agent is long */
 }
-img {
-  display: block;
-  margin: 0 auto;
+
+#user-agent-display {
+  /* Optional: Add styles for the user agent display itself */
+}
+
+#ua {
+  /* Optional: Add styles for the user agent display itself */
+  text-align: right;
 }
 </style>
-
 </style>
 
 <p>
-<img style="position: absolute; left: -1; top: -1;" border="0" src="img/wordmark.png" width="250" height="61" hspace="0"></p>
+<img style="position: absolute; left: -1; top: -1;" border="0" src="img/wordmark.png" width="250" height="61" hspace="0"><font face="Tahoma" size="2">
+<img border="0" src="img/banner2.gif" width="96" style="position:absolute;right:0;top: -2;float:right!important;margin-left:auto; width:96px; height:61px" height="61" align="right"></font></p><font face="Tahoma" size="2">
+<img border="0" src="img/banner2.gif" width="96" style="position:absolute;right:0;top: -2;float:right!important;margin-left:auto; width:96px; height:61px" height="61" align="right"></font></p></p>
 <p>
 &nbsp;</p>
 <p>
 <font style="font-size: 0.3pt">&nbsp;</font></p>
 <div class="parent-container">
-<div class="box" id="navbar" style="position: absolute; left: 0px; top: 40px">
+<div class="box" id="navbar" style="position: absolute; left: 0px; top: 39px">
 <div class="container" style="padding:-2px; text-decoration:none!important;">
-<p style="padding-bottom:0.2;">&nbsp;<font color="#FFFF00"><a href="index.htm"><font color="#FFFFFF"><span style="text-decoration: none">Home</span></font></a></font>&nbsp; 
+<p style="padding-bottom:0.2;"><font size="2" face="Tahoma">&nbsp;<font color="#FFFF00"><a href="index.htm"><font color="#FFFFFF"><span style="text-decoration: none">Home</span></font></a></font>&nbsp; 
 <font color="#FFFF00"><span style="text-decoration: none">Blog</span></font>&nbsp;
 <a href="socials.htm"><font color="#FFFFFF"><span style="text-decoration: none">Socials</span></font></a>&nbsp; <a href="projects.htm"><font color="#FFFFFF">
 <span style="text-decoration: none">Projects</span></font></a>&nbsp;
@@ -64,7 +81,37 @@ img {
 <span style="text-decoration: none">Art</span></font></a>&nbsp;
 <a href="downloads.htm">
 <font color="#FFFFFF">
-<span style="text-decoration: none">Downloads</span></font></a> </p>
+<span style="text-decoration: none">Downloads</span></font></a> </font> </p>
+  <span id="user-agent-wrapper">
+    <font size=1"><span id="ua"></span></font>
+  </span>
+<script>
+  function displayUserAgent() {
+    // Get the user agent string
+    var userAgent = navigator.userAgent;
+
+    // Get the existing element in the navbar (replace with the actual element ID)
+    var userAgentElement = document.getElementById('ua');
+
+    // Set the text content of the element to the user agent string
+    if (userAgentElement.textContent !== undefined) {
+      userAgentElement.textContent = userAgent; // Use textContent if supported
+    } else {
+      userAgentElement.innerText = userAgent; // Fallback to innerText
+    }
+  }
+
+  // Check for addEventListener support
+  if (document.addEventListener) {
+    document.addEventListener('DOMContentLoaded', displayUserAgent);
+  } else if (document.attachEvent) {
+    document.attachEvent('onreadystatechange', function() {
+      if (document.readyState === 'complete') {
+        displayUserAgent();
+      }
+    });
+  }
+</script>
 </div>
 </div>
 </div>
@@ -72,7 +119,7 @@ img {
 <p align="center">&nbsp;</p>
 <p align="center">&nbsp;</p>
 <p align="center">&nbsp;</p>
-<p align="center"><font size="5">Blog</font></p>
+<p align="center"><b><font size="5">Blog</font></b></p>
 <p align="center">Random experiences talked by yours truly</p>
 <p align="center">&nbsp;</p>
         <div class="column-b">
@@ -85,12 +132,12 @@ img {
     <h2 align="center">My first experience with WYSIWYG &amp; Microsoft Frontpage</h2>
     <p align="center">09 Mar 2025</p>
 	<p align="center">&nbsp;</p>
-    <p align="center">As you’ve might seen today, I’ve launched a new front-end 
+    <p align="center">As you've might seen today, I've launched a new front-end 
 	of my website for old browsers, made completely with Microsoft FrontPage 
-	2003, and well, today I’ll be...</p>
+	2003, and well, today I'll be...</p>
     </div>
     <div class="row is-narrow">
-    &nbsp;<p align="center"><a href="blog/2025/03/09/my-first-experience-with-wysiwyg.htm"><button>
+    &nbsp;<p align="center"><a href="blog/2025/03/09/my-first-experience-with-wysiwyg.htm" onclick="window.location.href = this.href;"><button>
 	&nbsp;Read&nbsp; </button></a>
 	</p>
 	<p>&nbsp;</div>
@@ -113,7 +160,7 @@ img {
 	will go into the...</p>
     </div>
     <div class="row is-narrow">
-    &nbsp;<p align="center"><a href="blog/2025/02/12/changes-were-made.htm"><button>
+    &nbsp;<p align="center"><a href="blog/2025/02/12/changes-were-made.htm" onclick="window.location.href = this.href;"><button>
 	&nbsp;Read&nbsp; </button></a>
 	</p>
 	<p>&nbsp;</div>
@@ -134,7 +181,7 @@ img {
 	<p align="center">Oh boy it has sure been a hell of a ride this year innit? The channel is no exception! On this edition of StuffyXP Wrapped, we&apos;ll take...</p>
     </div>
     <div class="row is-narrow">
-    &nbsp;<p align="center"><a href="blog/2024/12/31/stuffyxp-wrapped-2024-edition.htm"><button>&nbsp;Read&nbsp; </button></a>
+    &nbsp;<p align="center"><a href="blog/2024/12/31/stuffyxp-wrapped-2024-edition.htm" onclick="window.location.href = this.href;"><button>&nbsp;Read&nbsp; </button></a>
 	</p>
 	<p>&nbsp;</div>
     <hr>
@@ -155,7 +202,7 @@ img {
     </div>
     <div class="row is-narrow">
     &nbsp;<p align="center">
-	<a href="/retro-site/blog/2024/12/15/how-globed-can-save-your-gd-account.htm"><button>&nbsp;Read&nbsp; </button></a>
+	<a href="blog/2024/12/15/how-globed-can-save-your-gd-account.htm" onclick="window.location.href = this.href;"><button>&nbsp;Read&nbsp; </button></a>
 	</p>
 	<p>&nbsp;</div>
     <hr>
@@ -176,7 +223,7 @@ img {
     </div>
     <div class="row is-narrow">
     &nbsp;<p align="center">
-	<a href="/retro-site/blog/2024/09/28/how-to-get-camrec8-working-on-win-vista.htm"><button>&nbsp;Read&nbsp; </button></a>
+	<a href="blog/2024/09/28/how-to-get-camrec8-working-on-win-vista.htm" onclick="window.location.href = this.href;"><button>&nbsp;Read&nbsp; </button></a>
     </div>
     	<p>&nbsp;</p>
     <hr>
@@ -198,7 +245,7 @@ img {
     <div class="row is-narrow">
     <p align="center">
     &nbsp;<p align="center">
-    <a href="/retro-site/blog/2024/09/16/the-ubuntu-server-experience.htm"><button>&nbsp;Read&nbsp; </button></a>
+    <a href="blog/2024/09/16/the-ubuntu-server-experience.htm" onclick="window.location.href = this.href;"><button>&nbsp;Read&nbsp; </button></a>
 	<p align="left">
     &nbsp;</div>
     </div>

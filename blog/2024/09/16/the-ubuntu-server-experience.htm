@@ -13,15 +13,24 @@
   margin: 0;
   padding: 0;
   box-sizing: border-box;
+  text-decoration: none;
+  font-family: Tahoma;
 }
 .parent-container {
   position: relative;
   /* Add other styles as needed */
 }
 
+#navbar a {
+  display: inline; /* Ensure links are inline in IE5 */
+}
+
 #navbar {
   position: absolute;
-  background-color: black;
+  background-color: #B64C10;
+  display: block;
+width: 100%;
+
   color: white;
   height: 21px;
   left: 0;
@@ -29,20 +38,70 @@
   text-decoration: none;
   top: -7px;
   line-height: 21px; /* Match the height of the bar */
+position: relative; /* Needed for absolute positioning of the wrapper */
 }
+
+#user-agent-wrapper {
+  position: absolute; /* Take it out of the normal flow */
+  right: 0; /* Position it at the right edge */
+  top: 0; /* Align it to the top (optional) */
+  /* You can add padding or margin here if needed */
+  white-space: nowrap; /* Prevent wrapping if the user agent is long */
+}
+
+#user-agent-display {
+  /* Optional: Add styles for the user agent display itself */
+}
+
+#ua {
+  /* Optional: Add styles for the user agent display itself */
+  text-align: right;
 }
 </style>
 
+
 <p>
-<img style="position: absolute; left: -1; top: -1;" border="0" src="../../../../img/wordmark.png" width="250" height="61" hspace="0"></p>
+<img style="position: absolute; left: -1; top: -1;" border="0" src="../../../../img/wordmark.png" width="250" height="61" hspace="0"><font face="Tahoma" size="2">
+<img border="0" src="../../../../img/banner2.gif" width="96" style="position:absolute;right:0;top: -2;float:right!important;margin-left:auto; width:96px; height:61px" height="61" align="right"></font></p></p>
 <p>
 &nbsp;</p>
 <p>
 <font style="font-size: 0.3pt">&nbsp;</font></p>
 <div class="parent-container">
-<div class="box" id="navbar" style="position: absolute; left: 0px; top: 40px"><div class="container" style="padding:-2px; text-decoration:none!important;">
-<p style="padding-bottom:0.2;">&nbsp;&nbsp;<a href="../../../../blog.htm"><font color="#FFFFFF"><span style="text-decoration: none">&#8592; Go 
+<div class="box" id="navbar" style="position: absolute; left: 0px; top: 39px"><div class="container" style="padding:-2px; text-decoration:none!important;">
+<p style="padding-bottom:0.2;">&nbsp;&nbsp;<a href="../../../../blog.htm"><font color="#FFFFFF" size="2"><span style="text-decoration: none">&#8592; Go 
 back...</span></font></a></p>
+<span id="user-agent-wrapper">
+    <font size=1"><span id="ua"></span></font>
+  </span>
+<font size="2">
+<script>
+  function displayUserAgent() {
+    // Get the user agent string
+    var userAgent = navigator.userAgent;
+
+    // Get the existing element in the navbar (replace with the actual element ID)
+    var userAgentElement = document.getElementById('ua');
+
+    // Set the text content of the element to the user agent string
+    if (userAgentElement.textContent !== undefined) {
+      userAgentElement.textContent = userAgent; // Use textContent if supported
+    } else {
+      userAgentElement.innerText = userAgent; // Fallback to innerText
+    }
+  }
+
+  // Check for addEventListener support
+  if (document.addEventListener) {
+    document.addEventListener('DOMContentLoaded', displayUserAgent);
+  } else if (document.attachEvent) {
+    document.attachEvent('onreadystatechange', function() {
+      if (document.readyState === 'complete') {
+        displayUserAgent();
+      }
+    });
+  }
+</script>
 </div>
 </div>
 </div>
@@ -117,7 +176,8 @@ know how to get that...</p>
 <p>Then, after a restart (since i wanted to do show something funny on Windows, the pic below is what i wanted to show), then i rebooted back into Ubuntu and... i got what i wanted... almost.</p>
 
 <p>&nbsp;</p>
-<p><img src="/blog/img/2024-09-16/winpic.jpg" alt="" style="max-width: 100%; height: auto;">
+<p><img src="/blog/img/2024-09-16/winpic.jpg" alt="" style="max-width: 100%;
+; height: auto;">
 </p>
 <p><em>Windows 7 Disk Management window letting me assign a letter, shrink and mount the Linux volume, which does not happen with other distros I had around (this did not happen with Xubuntu), prob happened since I first used that volume as FAT32 then used it in the installer so I wouldn't get confused lmao</em></p>
 
@@ -135,7 +195,8 @@ Then i went on to customize the panels a bit, making the bottom one (where the l
 <p>And well, everything is done, here's the end result!</p>
 
 <p>&nbsp;</p>
-<p><img src="/blog/img/2024-09-16/result.jpg" alt="" style="max-width: 100%; height: auto;"></p>
+<p><img src="/blog/img/2024-09-16/result.jpg" alt="" style="max-width: 100%;
+; height: auto;"></p>
 
 <h2 id="conclusion">&nbsp;</h2>
 <h2>Conclusion</h2>

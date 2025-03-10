@@ -13,15 +13,24 @@
   margin: 0;
   padding: 0;
   box-sizing: border-box;
+  text-decoration: none;
+  font-family: Tahoma;
 }
 .parent-container {
   position: relative;
   /* Add other styles as needed */
 }
 
+#navbar a {
+  display: inline; /* Ensure links are inline in IE5 */
+}
+
 #navbar {
   position: absolute;
-  background-color: black;
+  background-color: #B64C10;
+  display: block;
+width: 100%;
+
   color: white;
   height: 21px;
   left: 0;
@@ -29,21 +38,71 @@
   text-decoration: none;
   top: -7px;
   line-height: 21px; /* Match the height of the bar */
+position: relative; /* Needed for absolute positioning of the wrapper */
 }
+
+#user-agent-wrapper {
+  position: absolute; /* Take it out of the normal flow */
+  right: 0; /* Position it at the right edge */
+  top: 0; /* Align it to the top (optional) */
+  /* You can add padding or margin here if needed */
+  white-space: nowrap; /* Prevent wrapping if the user agent is long */
+}
+
+#user-agent-display {
+  /* Optional: Add styles for the user agent display itself */
+}
+
+#ua {
+  /* Optional: Add styles for the user agent display itself */
+  text-align: right;
 }
 </style>
 
+
 <p>
-<img style="position: absolute; left: -1; top: -1;" border="0" src="../../../../img/wordmark.png" width="250" height="61" hspace="0"></p>
+<img style="position: absolute; left: -1; top: -1;" border="0" src="../../../../img/wordmark.png" width="250" height="61" hspace="0"><font face="Tahoma" size="2">
+<img border="0" src="../../../../img/banner2.gif" width="96" style="position:absolute;right:0;top: -2;float:right!important;margin-left:auto; width:96px; height:61px" height="61" align="right"></font></p></p>
 <p>
 &nbsp;</p>
 <p>
 <font style="font-size: 0.3pt">&nbsp;</font></p>
 <div class="parent-container">
-<div class="box" id="navbar" style="position: absolute; left: 0px; top: 40px"><div class="container" style="padding:-2px; text-decoration:none!important;">
+<div class="box" id="navbar" style="position: absolute; left: 0px; top: 38px"><div class="container" style="padding:-2px; text-decoration:none!important;">
 <div class="container" style="padding:-2px; text-decoration:none!important;">
-<p style="padding-bottom:0.2;">&nbsp;&nbsp;<a href="../../../../blog.htm"><font color="#FFFFFF"><span style="text-decoration: none">&#8592; Go 
+<p style="padding-bottom:0.2;">&nbsp;&nbsp;<a href="../../../../blog.htm"><font color="#FFFFFF" size="2"><span style="text-decoration: none">&#8592; Go 
 back...</span></font></a></p>
+<span id="user-agent-wrapper">
+    <font size=1"><span id="ua"></span></font>
+  </span>
+<font size="2">
+<script>
+  function displayUserAgent() {
+    // Get the user agent string
+    var userAgent = navigator.userAgent;
+
+    // Get the existing element in the navbar (replace with the actual element ID)
+    var userAgentElement = document.getElementById('ua');
+
+    // Set the text content of the element to the user agent string
+    if (userAgentElement.textContent !== undefined) {
+      userAgentElement.textContent = userAgent; // Use textContent if supported
+    } else {
+      userAgentElement.innerText = userAgent; // Fallback to innerText
+    }
+  }
+
+  // Check for addEventListener support
+  if (document.addEventListener) {
+    document.addEventListener('DOMContentLoaded', displayUserAgent);
+  } else if (document.attachEvent) {
+    document.attachEvent('onreadystatechange', function() {
+      if (document.readyState === 'complete') {
+        displayUserAgent();
+      }
+    });
+  }
+</script>
 </div>
 </div>
 </div>
@@ -69,7 +128,8 @@ back...</span></font></a></p>
 <p>And when you're about to film your &quot;&quot;&quot;&quot;tutorial&quot;&quot;&quot;&quot;, you get greeted by this error...</p>
 <p>&nbsp;</p>
 
-<p><img src="../../../../blog/img/2024-09-28/camrec8%202.JPG" alt="" style="max-width: 100%; height: auto;"></p>
+<p><img src="../../../../blog/img/2024-09-28/camrec8%202.JPG" alt="" style="max-width: 100%;
+; height: auto;"></p>
 
 <p>&nbsp;</p>
 <p>Well today i'm gonna walkthrough you on how to fix this annoying error (side note: this only happens on Windows Vista no matter what Service Pack you're in, and it <em>only</em> happen on Vista, XP, 7 and up do not have this problem...)</p>
@@ -78,7 +138,8 @@ back...</span></font></a></p>
 <p>On the desktop, press on your keyboard the keys (oh wow the irony lmao) Win + R, this should open up</p>
 
 <p>&nbsp;</p>
-<p><img src="../../../../blog/img/2024-09-28/camrec8%203.JPG" alt="" style="max-width: 100%; height: auto;"></p>
+<p><img src="../../../../blog/img/2024-09-28/camrec8%203.JPG" alt="" style="max-width: 100%;
+; height: auto;"></p>
 
 <p>&nbsp;</p>
 <p>As you can see i already have that path written, but be sure to write that in in the run box: <code class="language-plaintext highlighter-rouge">C:\Program Files (x86)\TechSmith\Camtasia Studio 8</code></p>
@@ -88,7 +149,8 @@ back...</span></font></a></p>
 &quot;Properties&quot;</p>
 
 <p>&nbsp;</p>
-<p><img src="../../../../blog/img/2024-09-28/camrec8%204.JPG" alt="" style="max-width: 100%; height: auto;"></p>
+<p><img src="../../../../blog/img/2024-09-28/camrec8%204.JPG" alt="" style="max-width: 100%;
+; height: auto;"></p>
 
 <p><em>image showing CamRecorder.exe being selected in Windows Explorer (sorry for the badly drawn arrow lmaooo)</em></p>
 
@@ -96,19 +158,22 @@ back...</span></font></a></p>
 <p>After that, chose the &quot;Compatibility&quot; tab on the window and click &quot;Show settings for all users&quot; or smething similar (<em>sorry that it's in Spanish i use(d to use) Spanish Windows...</em>)</p>
 
 <p>&nbsp;</p>
-<p><img src="../../../../blog/img/2024-09-28/camrec8%205.JPG" alt="" style="max-width: 100%; height: auto;"></p>
+<p><img src="../../../../blog/img/2024-09-28/camrec8%205.JPG" alt="" style="max-width: 100%;
+; height: auto;"></p>
 
 <p>&nbsp;</p>
 <p>Another window should open up, just tick the &quot;Run this program as an administrator&quot; checkbox, then click OK until you're back to the Windows Explorer window</p>
 
 <p>&nbsp;</p>
-<p><img src="../../../../blog/img/2024-09-28/camrec8%206.JPG" alt="" style="max-width: 100%; height: auto;"></p>
+<p><img src="../../../../blog/img/2024-09-28/camrec8%206.JPG" alt="" style="max-width: 100%;
+; height: auto;"></p>
 
 <p>&nbsp;</p>
 <p>Then launch Camtasia Recorder as usual, and it should open up just fine, congratulations! you just fixed that one server referall error! :D</p>
 
 <p>&nbsp;</p>
-<p><img src="../../../../blog/img/2024-09-28/camrec8%207.JPG" alt="" style="max-width: 100%; height: auto;"></p>
+<p><img src="../../../../blog/img/2024-09-28/camrec8%207.JPG" alt="" style="max-width: 100%;
+; height: auto;"></p>
 
 <p>&nbsp;</p>
 <p>Now just continue your recording and video editing as usual!</p>

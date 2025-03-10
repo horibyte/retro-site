@@ -15,15 +15,24 @@
   margin: 0;
   padding: 0;
   box-sizing: border-box;
+  text-decoration: none;
+  font-family: Tahoma;
 }
 .parent-container {
   position: relative;
   /* Add other styles as needed */
 }
 
+#navbar a {
+  display: inline; /* Ensure links are inline in IE5 */
+}
+
 #navbar {
   position: absolute;
-  background-color: black;
+  background-color: #B64C10;
+  display: block;
+width: 100%;
+
   color: white;
   height: 21px;
   left: 0;
@@ -31,20 +40,39 @@
   text-decoration: none;
   top: -7px;
   line-height: 21px; /* Match the height of the bar */
+position: relative; /* Needed for absolute positioning of the wrapper */
 }
+
+#user-agent-wrapper {
+  position: absolute; /* Take it out of the normal flow */
+  right: 0; /* Position it at the right edge */
+  top: 0; /* Align it to the top (optional) */
+  /* You can add padding or margin here if needed */
+  white-space: nowrap; /* Prevent wrapping if the user agent is long */
+}
+
+#user-agent-display {
+  /* Optional: Add styles for the user agent display itself */
+}
+
+#ua {
+  /* Optional: Add styles for the user agent display itself */
+  text-align: right;
 }
 </style>
 
 <p>
-<img style="position: absolute; left: -1; top: -1;" border="0" src="img/wordmark.png" width="250" height="61" hspace="0"></p>
+<img style="position: absolute; left: -1; top: -1;" border="0" src="img/wordmark.png" width="250" height="61" hspace="0"><font face="Tahoma" size="2">
+<img border="0" src="img/banner2.gif" width="96" style="position:absolute;right:0;top: -2;float:right!important;margin-left:auto; width:96px; height:61px" height="61" align="right"></font></p><font face="Tahoma" size="2">
+<img border="0" src="img/banner2.gif" width="96" style="position:absolute;right:0;top: -2;float:right!important;margin-left:auto; width:96px; height:61px" height="61" align="right"></font></p></p>
 <p>
 &nbsp;</p>
 <p>
 <font style="font-size: 0.3pt">&nbsp;</font></p>
 <div class="parent-container">
-<div class="box" id="navbar" left="0" top="40" style="position: absolute; left: 0px; top: 40px">
+<div class="box" id="navbar" left="0" top="40" style="position: absolute; left: 0px; top: 39px">
 <div class="container" style="padding:-2px; text-decoration:none!important;">
-<p style="padding-bottom:0.2;">&nbsp;<a href="index.htm"><font color="#FFFFFF"><span style="text-decoration: none">Home</span></font></a>&nbsp;
+<p style="padding-bottom:0.2;"><font size="2">&nbsp;<a href="index.htm"><font color="#FFFFFF"><span style="text-decoration: none">Home</span></font></a>&nbsp;
 <font color="#FFFFFF"><span style="text-decoration: none"> <a href="blog.htm">
 <font color="#FFFFFF"><span style="text-decoration: none">Blog</span></font></a></span></font>&nbsp;
 <a href="socials.htm"><font color="#FFFFFF"><span style="text-decoration: none">Socials</span></font></a>&nbsp; <a href="projects.htm"><font color="#FFFFFF">
@@ -53,7 +81,51 @@
 <span style="text-decoration: none">Art</span></font></a>&nbsp;
 <a href="downloads.htm">
 <font color="#FFFFFF">
-<span style="text-decoration: none">Downloads</span></font></a> </p>
+<span style="text-decoration: none">Downloads</span></font></a> </font> </p>
+  <span id="user-agent-wrapper">
+    <font size=1"><span id="ua"></span></font>
+  </span>
+<script>
+  function displayUserAgent() {
+    // Get the user agent string
+    var userAgent = navigator.userAgent;
+
+    // Get the existing element in the navbar (replace with the actual element ID)
+    var userAgentElement = document.getElementById('ua');
+
+    // Set the text content of the element to the user agent string
+    if (userAgentElement.textContent !== undefined) {
+      userAgentElement.textContent = userAgent; // Use textContent if supported
+    } else {
+      userAgentElement.innerText = userAgent; // Fallback to innerText
+    }
+  }
+
+  // Check for addEventListener support
+  if (document.addEventListener) {
+    document.addEventListener('DOMContentLoaded', displayUserAgent);
+  } else if (document.attachEvent) {
+    document.attachEvent('onreadystatechange', function() {
+      if (document.readyState === 'complete') {
+        displayUserAgent();
+      }
+    });
+  }
+</script>
+  <span id="user-agent-wrapper">
+    <font size=1"><span id="ua"></span></font>
+  </span>
+  <script>
+document.addEventListener('DOMContentLoaded', function() {
+  // Get the user agent string
+  var userAgent = navigator.userAgent;
+
+// Get the existing element in the navbar (replace with the actual element ID)
+var userAgentElement = document.getElementById('ua'); // Replace with your element ID
+
+// Set the text content of the element to the user agent string
+userAgentElement.textContent = userAgent;
+</script>
 </div>
 </div>
 </div>
@@ -68,7 +140,7 @@
 	<p>&nbsp;</p>
 	<p>&nbsp;</p>
 	<p>&nbsp;</p>
-<p align="center"><span style="font-weight: 400"><font size="5">About Me!</font></span></h2>
+<p align="center"><b><span><font size="5">About Me!</font></span></b></h2>
 <p align="center">Some things you'd wanna know about me :)</p>
 <style>
     p a {
@@ -212,6 +284,9 @@
 </div>
 <div class="is-hidden-mobile"><div class="container" id="buttons">
 <h2 align="center">Buttons!!</h2>
+<p align="center"><font size="2">compatibility with older browsers (as in 
+displaying the pages or displaying the buttons) hasn't tested and may not work.</font></p>
+<p align="center">&nbsp;</p>
 <p align="center">
 <a href="https://pquirrel.neocities.org"><img src="https://pquirrel.neocities.org/buttons/self_dark.png" title="pquirrel"></a>
 <a href="http://clyron.is-a.dev"><img src="http://clyron.is-a.dev/img/8831/clyron-8831.png" title="Clyron"></a>
@@ -248,28 +323,7 @@
 <div id="buttons">
 <p align="center">
 <img src="img/button.png" title="Horibyte">
-<p align="center">
-&nbsp;</div>
-<p align="center">Put this code in your website to add my button:</p>
-<p id="code" align="center">&lt;a href="https://horibyte.is-a.dev"&gt;&lt;img src="https://horibyte.is-a.devimg/button.png" height="31" title="Horibyte"&gt;&lt;/a&gt;</p>
-	<p align="center">
-<button id="copyButton" style="font-size: 16px; width:203; height:30"><i class="fa-regular fa-copy"></i>&nbsp;Copy to Clipboard</button>
 
-<script>
-document.getElementById("copyButton").addEventListener("click", function() {
-  const textToCopy = document.getElementById("code").innerText;
-
-  // Modern way (recommended)
-  navigator.clipboard.writeText(textToCopy).then(function() {
-    console.log('Async: Copying to clipboard was successful!');
-    alert('Text copied to clipboard!'); // Optional: Provide user feedback
-  }, function(err) {
-    console.error('Async: Could not copy text: ', err);
-    alert('Could not copy text.'); // Optional: Provide error feedback
-  });
-
-});
-</script>
 	</p>
 <p>&nbsp;</p>
 <p style="font-size:15px;font-style: italic;" align="center"><i>If you want something to be added, or <b>you</b> to be added, email me at <a href="mailto:thehoribyte@gmail.com">

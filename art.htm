@@ -15,15 +15,24 @@
   margin: 0;
   padding: 0;
   box-sizing: border-box;
+  text-decoration: none;
+  font-family: Tahoma;
 }
 .parent-container {
   position: relative;
   /* Add other styles as needed */
 }
 
+#navbar a {
+  display: inline; /* Ensure links are inline in IE5 */
+}
+
 #navbar {
   position: absolute;
-  background-color: black;
+  background-color: #B64C10;
+  display: block;
+width: 100%;
+
   color: white;
   height: 21px;
   left: 0;
@@ -31,20 +40,40 @@
   text-decoration: none;
   top: -7px;
   line-height: 21px; /* Match the height of the bar */
+position: relative; /* Needed for absolute positioning of the wrapper */
 }
+
+#user-agent-wrapper {
+  position: absolute; /* Take it out of the normal flow */
+  right: 0; /* Position it at the right edge */
+  top: 0; /* Align it to the top (optional) */
+  /* You can add padding or margin here if needed */
+  white-space: nowrap; /* Prevent wrapping if the user agent is long */
+}
+
+#user-agent-display {
+  /* Optional: Add styles for the user agent display itself */
+}
+
+#ua {
+  /* Optional: Add styles for the user agent display itself */
+  text-align: right;
 }
 </style>
 
+
 <p>
-<img style="position: absolute; left: -1; top: -1;" border="0" src="img/wordmark.png" width="250" height="61" hspace="0"></p>
+<img style="position: absolute; left: -1; top: -1;" border="0" src="img/wordmark.png" width="250" height="61" hspace="0"><font face="Tahoma" size="2">
+<img border="0" src="img/banner2.gif" width="96" style="position:absolute;right:0;top: -2;float:right!important;margin-left:auto; width:96px; height:61px" height="61" align="right"></font></p><font face="Tahoma" size="2">
+<img border="0" src="img/banner2.gif" width="96" style="position:absolute;right:0;top: -2;float:right!important;margin-left:auto; width:96px; height:61px" height="61" align="right"></font></p></p>
 <p>
 &nbsp;</p>
 <p>
 <font style="font-size: 0.3pt">&nbsp;</font></p>
 <div class="parent-container">
-<div class="box" id="navbar" style="position: absolute; left: 0px; top: 40px">
+<div class="box" id="navbar" style="position: absolute; left: 0px; top: 39px">
 <div class="container" style="padding:-2px; text-decoration:none!important;">
-<p style="padding-bottom:0.2;">&nbsp;<a href="index.htm"><font color="#FFFFFF">Home</font></a>&nbsp; <a href="blog.htm">
+<p style="padding-bottom:0.2;"><font size="2">&nbsp;<a href="index.htm"><font color="#FFFFFF">Home</font></a>&nbsp; <a href="blog.htm">
 <font color="#FFFFFF"><span style="text-decoration: none">Blog</span></font></a>&nbsp;
 <a href="socials.htm"><font color="#FFFFFF"><span style="text-decoration: none">Socials</span></font></a>&nbsp; <a href="projects.htm"><font color="#FFFFFF">
 <span style="text-decoration: none">Projects</span></font></a>&nbsp;
@@ -53,7 +82,51 @@
 <span style="text-decoration: none">Art</span></font>&nbsp;
 <a href="downloads.htm">
 <font color="#FFFFFF">
-<span style="text-decoration: none">Downloads</span></font></a> </p>
+<span style="text-decoration: none">Downloads</span></font></a> </font> </p>
+  <span id="user-agent-wrapper">
+    <font size=1"><span id="ua"></span></font>
+  </span>
+  <script>
+document.addEventListener('DOMContentLoaded', function() {
+  // Get the user agent string
+  var userAgent = navigator.userAgent;
+
+// Get the existing element in the navbar (replace with the actual element ID)
+var userAgentElement = document.getElementById('ua'); // Replace with your element ID
+
+// Set the text content of the element to the user agent string
+userAgentElement.textContent = userAgent;
+</script>
+  <span id="user-agent-wrapper">
+    <font size=1"><span id="ua"></span></font>
+  </span>
+  <script>
+  function displayUserAgent() {
+    // Get the user agent string
+    var userAgent = navigator.userAgent;
+
+    // Get the existing element in the navbar (replace with the actual element ID)
+    var userAgentElement = document.getElementById('ua');
+
+    // Set the text content of the element to the user agent string
+    if (userAgentElement.textContent !== undefined) {
+      userAgentElement.textContent = userAgent; // Use textContent if supported
+    } else {
+      userAgentElement.innerText = userAgent; // Fallback to innerText
+    }
+  }
+
+  // Check for addEventListener support
+  if (document.addEventListener) {
+    document.addEventListener('DOMContentLoaded', displayUserAgent);
+  } else if (document.attachEvent) {
+    document.attachEvent('onreadystatechange', function() {
+      if (document.readyState === 'complete') {
+        displayUserAgent();
+      }
+    });
+  }
+</script>
 </div>
 </div>
 </div>
@@ -68,7 +141,7 @@
 	<p>&nbsp;</p>
 	<p>&nbsp;</p>
 	<p>&nbsp;</p>
-	<p align="center"><font size="5">Art</font></p>
+	<p align="center"><b><font size="5">Art</font></b></p>
 <p align="center">A page for all of the art I made!</p>
 	<p align="center">&nbsp;</p>
 <div class="container" style="gap: 5px !important;">
@@ -76,7 +149,7 @@
 <p style="text-align: center;">My OC!</p>
 <p style="text-align: center;">&nbsp;</p>
 <p style="text-align: center;"></p>
-<p align="center"><a href="art/comet.htm"><button>
+<p align="center"><a href="art/comet.htm" onclick="window.location.href = this.href;"><button>
 <font color="#000000">&nbsp;View&nbsp;</font> </button>
 </font></a></p>
 </p>
